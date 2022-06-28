@@ -13,7 +13,7 @@ class NbpApi
 
   def import_table(name = 'A')
     result = request(name)
-    return Rails.logger.error("NBP import error #{result.inspect}") unless result && result.success?
+    return Rails.logger.error("NBP import error #{result.inspect}") unless result&.success?
 
     json = parse_result(result)
     return unless json
