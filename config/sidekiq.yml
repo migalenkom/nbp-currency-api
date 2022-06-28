@@ -1,0 +1,13 @@
+development:
+  :concurrency: 2
+  :logfile: ./log/sidekiq.log
+:timeout: 120
+:queues:
+  - default
+  - importers
+:schedule:
+  importers:
+    cron: '0 1 * * *' # Run daily at 1am
+    description: "Fetch fresh currency rates"
+    class: ImportCurrencyRates
+    queue: importers
